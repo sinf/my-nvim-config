@@ -63,6 +63,8 @@ require('packer').startup(function(use)
       tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
+  use 'fatih/vim-go'
+
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -446,6 +448,11 @@ require("nvim-tree").setup({
             },
         },
     },
+})
+
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.go',
+  command = 'GoFmt',
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
