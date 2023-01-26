@@ -58,12 +58,7 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
-  use {
-      'nvim-tree/nvim-tree.lua',
-      tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
-
-  use 'fatih/vim-go'
+  -- use 'fatih/vim-go'
 
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -401,12 +396,12 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<S-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
+    ['<C-l>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
@@ -431,29 +426,16 @@ cmp.setup {
   },
 }
 
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- open files in previous window when pressing enter in netrw
+vim.g.netrw_browse_split=4
 
-require("nvim-tree").setup({
-    renderer = {
-        add_trailing = true,
-        icons = {
-            show = {
-                file = false,
-                folder = false,
-                folder_arrow = false,
-                git = false,
-                modified = false,
-            },
-        },
-    },
-})
+--vim.api.nvim_create_autocmd('BufWritePost', {
+--  pattern = '*.go',
+--  command = 'GoFmt',
+--})
 
-vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = '*.go',
-  command = 'GoFmt',
-})
+-- disable gofmt when saving *.go
+-- vim.g.go_fmt_autosave = false
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
