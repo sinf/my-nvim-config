@@ -105,8 +105,8 @@ vim.o.hlsearch = true
 vim.wo.number = true
 vim.wo.relativenumber = true
 
--- Enable mouse mode
---vim.o.mouse = 'a'
+-- Mouse mode ('a'=enabled, ''=disabled)
+vim.o.mouse = ''
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -401,7 +401,7 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<C-l>'] = cmp.mapping(function(fallback)
+    ['<C-n>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
