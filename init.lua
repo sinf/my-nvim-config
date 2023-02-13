@@ -436,10 +436,10 @@ vim.g.netrw_liststyle=3
 vim.g.netrw_winsize=25
 
 -- minimum window width
-vim.g.netrw_wiw=80
+-- vim.g.netrw_wiw=80
 
 -- do something with <c-tab>
-vim.g.netrw_usetab=true
+-- vim.g.netrw_usetab=true
 
 --vim.api.nvim_create_autocmd('BufWritePost', {
 --  pattern = '*.go',
