@@ -426,8 +426,20 @@ cmp.setup {
   },
 }
 
--- open files in previous window when pressing enter in netrw
+-- how to open files when pressing enter: 1=horizontal split, 2=vertical, 4=previous window
 vim.g.netrw_browse_split=4
+
+-- tree style listing
+vim.g.netrw_liststyle=3
+
+-- default window size (:Vex)
+vim.g.netrw_winsize=25
+
+-- minimum window width
+vim.g.netrw_wiw=80
+
+-- do something with <c-tab>
+vim.g.netrw_usetab=true
 
 --vim.api.nvim_create_autocmd('BufWritePost', {
 --  pattern = '*.go',
